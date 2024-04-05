@@ -8,4 +8,5 @@ import org.mapstruct.Mapper;
 public interface ProductoMapper {
     ProductoDto productoToProducto(Producto producto);
     Producto productoDtoToProducto(ProductoDto productoDto);
+
 }

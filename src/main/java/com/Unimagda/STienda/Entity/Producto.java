@@ -1,14 +1,14 @@
 package com.Unimagda.STienda.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
-
+@Data
 @Entity
 @Table(name= "productos")
 @AllArgsConstructor
@@ -22,5 +22,7 @@ public class Producto {
     private Double PrecioProducto;
     private Integer Stock;
     @OneToMany(mappedBy = "producto")
-    private List<ItemPedido> itemPedidos;
+   private List<ItemPedido> itemPedidos;
+
+
 }
