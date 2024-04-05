@@ -22,5 +22,5 @@ public class Producto {
     private Double PrecioProducto;
     private Integer Stock;
     @OneToMany(mappedBy = "producto")
-    private List<ItemPedido> itemPedidos
+    private List<ItemPedido> itemPedidos;
 }
