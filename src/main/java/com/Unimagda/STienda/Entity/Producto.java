@@ -20,7 +20,7 @@ public class Producto {
     private Long id;
     private String NombreProducto;
     private Double PrecioProducto;
-    private Integer Stock;
+    private int Stock;
     @OneToMany(mappedBy = "producto")
    private List<ItemPedido> itemPedidos;
 
