@@ -10,10 +10,10 @@ import java.util.List;
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
     @Query("select p from Producto p where lower(p.NombreProducto) like %:searchTerm%")
-    List<Producto>findByNombreProducto(String searchTerm);
+    List<Producto>findByNombreProducto();
     @Query("select p from Producto p where p.Stock > 0")
     List<Producto>findByStockGreaterThan(int Stock);
 
     @Query("select p from Producto p where p.PrecioProducto <=:maxPrecio and p.Stock<=:maxStock")
-    List<Producto>findByPrecioAndStockGreaterThan(int maxPrecio, int maxStock);
+    List<Producto>findByPrecioAndStockGreaterThan(Double maxPrecio, int maxStock);
 }

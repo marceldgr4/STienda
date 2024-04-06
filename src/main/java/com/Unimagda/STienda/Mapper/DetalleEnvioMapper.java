@@ -1,15 +1,16 @@
 package com.Unimagda.STienda.Mapper;
 
-import com.Unimagda.STienda.DTO.PedidoDto;
-import com.Unimagda.STienda.Entity.Pedido;
+import com.Unimagda.STienda.DTO.DetalleEnvioDto;
+
+import com.Unimagda.STienda.Entity.DetalleEnvio;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface DetalleEnvioMapper {
-    PedidoMapper INSTANCE = Mappers.getMapper(PedidoMapper.class);
+    DetalleEnvioMapper INSTANCE = Mappers.getMapper(DetalleEnvioMapper.class);
     @Mapping(target = "id", ignore = true)
-    PedidoDto pedidoToPedidoDto(Pedido pedido);
-    Pedido pedidoDtoToPedido(PedidoDto pedidoDto);
+    DetalleEnvioDto detalleEnvioToDetalleEnvioDto(DetalleEnvio detalleEnvio);
 }
