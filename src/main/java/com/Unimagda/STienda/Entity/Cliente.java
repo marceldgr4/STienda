@@ -12,17 +12,30 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "clientes")
+@Builder
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String Nombre;
+
+    @Column(unique = true)
     private String Email;
+
+    @Column(nullable = false)
     private String Direccion;
+    @Column(nullable = false)
+
     private String CityName;
+    @Column(nullable = false)
+
     @OneToMany(mappedBy = "cliente")
     private List<Pedido>pedidos;
 
-    public Cliente(String cliente1, String email, String direccion, String ciudad) {
-    }
+   public Cliente ActualizarCliente(Cliente cliente) {
+       return new Cliente(this.id, cliente.Nombre, cliente.Email, cliente.Direccion,cliente.CityName,cliente.pedidos);
+   }
+
+
 }
