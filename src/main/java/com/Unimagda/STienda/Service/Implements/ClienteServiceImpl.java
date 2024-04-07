@@ -1,6 +1,7 @@
 package com.Unimagda.STienda.Service.Implements;
 
 import com.Unimagda.STienda.DTO.ClienteDto;
+import com.Unimagda.STienda.DTO.Send.ClienteDtoSend;
 import com.Unimagda.STienda.Mapper.ClienteMapper;
 import com.Unimagda.STienda.Repository.ClienteRepository;
 import com.Unimagda.STienda.Service.ClienteService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,7 +26,7 @@ public class ClienteServiceImpl implements ClienteService {
         this.clienteMapper = clienteMapper;
     }
     @Override
-    public List<ClienteDto> BuscarPorEmail(String email) {
+    public Optional<ClienteDtoSend> BuscarPorEmail(String email) {
         return clienteRepository.findByEmail(email)
                 .stream().map(clienteMapper::clienteToClienteDto)
                 .collect(Collectors.toList());

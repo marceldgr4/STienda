@@ -1,6 +1,7 @@
 package com.Unimagda.STienda.Mapper;
 
 import com.Unimagda.STienda.DTO.ClienteDto;
+import com.Unimagda.STienda.DTO.Send.ClienteDtoSend;
 import com.Unimagda.STienda.Entity.Cliente;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,6 +13,8 @@ public interface ClienteMapper {
     @Mapping(target = "id", ignore = true)
     ClienteDto clienteToClienteDto(Cliente cliente);
     Cliente clienteDtoToCliente(ClienteDto clienteDto);
+
+    ClienteDtoSend clientesToClienteDtoSend(Cliente clienteDtoSend);
 
 }
 
