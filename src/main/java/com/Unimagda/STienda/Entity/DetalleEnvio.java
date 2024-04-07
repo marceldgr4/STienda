@@ -11,13 +11,14 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class DetalleEnvio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String Direccion;
     private String Transportadora;
-    private  String NumeroDeGuia;
+    private  Long NumeroDeGuia;
     private EstadoDePedido EstadoDePedido;
 
     @OneToOne

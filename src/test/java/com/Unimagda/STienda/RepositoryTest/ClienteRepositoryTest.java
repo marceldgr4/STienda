@@ -1,4 +1,4 @@
-package com.Unimagda.STienda.UnitaryTest.RepositoryTest;
+package com.Unimagda.STienda.RepositoryTest;
 
 import com.Unimagda.STienda.AbstractIntegrationBDTest;
 import com.Unimagda.STienda.Entity.Cliente;
@@ -25,6 +25,7 @@ public class ClienteRepositoryTest extends AbstractIntegrationBDTest {
         this.clienteRepository = clienteRepository;
     }
     @BeforeEach
+
     public void setUp() {
         clienteRepository.deleteAll();
     }
@@ -48,13 +49,13 @@ public class ClienteRepositoryTest extends AbstractIntegrationBDTest {
 
     }
     @Test
-    void dadoCliente_cuandoGuardar_entoncesIdClienteNoNulo(){
+    public void dadoCliente_cuandoGuardar_entoncesIdClienteNoNulo(){
         CrearCliente();
         Cliente cliente =clienteRepository.findAll().get(0);
         assertNotNull(cliente.getId());
     }
     @Test
-    void dadoEmail_cuandoBuscarPorEmail_entoncesClienteRetornado(){
+    public void dadoEmail_cuandoBuscarPorEmail_entoncesClienteRetornado(){
         CrearCliente();
         List<Cliente> cliente = clienteRepository.findAll();
         List<Cliente> clientes = clienteRepository.findByEmail("cliente@email.com");
@@ -63,7 +64,7 @@ public class ClienteRepositoryTest extends AbstractIntegrationBDTest {
 
     }
     @Test
-    void dadoDireccion_cuandoBuscarPorDireccion_entoncesClienteRetornado(){
+   public void dadoDireccion_cuandoBuscarPorDireccion_entoncesClienteRetornado(){
         CrearCliente();
         List<Cliente> cliente = clienteRepository.findAll();
         List<Cliente> clientes = clienteRepository.findByDireccion("direccion");
@@ -71,21 +72,21 @@ public class ClienteRepositoryTest extends AbstractIntegrationBDTest {
         assertEquals(clientes.get(0).getDireccion(),"direccion");
     }
     @Test
-    void dadoNombre_cuandoBuscarPorNombreQueEmpiezaCon_entoncesListaVacia(){
+    public void dadoNombre_cuandoBuscarPorNombreQueEmpiezaCon_entoncesListaVacia(){
         CrearCliente();
         Pageable pageable = (Pageable) PageRequest.of(0,10);
-        Page<Cliente> clientes = (Page<Cliente>) clienteRepository.findByNombreStartingWith("cliente3");
+        Page<Cliente> clientes = (Page<Cliente>) clienteRepository.findByNombreStartingWith(PageRequest.of(0, 10), "cliente3");
         assertThat(clientes).isEmpty();
     }
     @Test
-    void dadoIdCliente_cuandoBuscarPorIdCliente_entoncesClienteRetornado(){
+   public void dadoIdCliente_cuandoBuscarPorIdCliente_entoncesClienteRetornado(){
         CrearCliente();
         Long idCliente=1l;
         Cliente cliente = clienteRepository.findById(idCliente).get();
         assertEquals("cliente",cliente.getNombre());
     }
     @Test
-    void dadoIdCliente_cuandoEliminarPorId_entoncesClienteEliminado(){
+   public void dadoIdCliente_cuandoEliminarPorId_entoncesClienteEliminado(){
         CrearCliente();
         Long idCliente = 1l;
         clienteRepository.deleteById(idCliente);
