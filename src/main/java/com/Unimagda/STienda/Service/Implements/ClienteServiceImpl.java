@@ -11,10 +11,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+
 public class ClienteServiceImpl implements ClienteService {
 
     private final ClienteRepository clienteRepository;
     private final ClienteMapper clienteMapper;
+
 
     @Autowired
     public ClienteServiceImpl(ClienteRepository clienteRepository, ClienteMapper clienteMapper) {
