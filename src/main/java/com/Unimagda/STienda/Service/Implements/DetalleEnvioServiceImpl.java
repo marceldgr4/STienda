@@ -3,9 +3,9 @@ package com.Unimagda.STienda.Service.Implements;
 
 import com.Unimagda.STienda.DTO.Send.DetalleEnvioDtoSend;
 import com.Unimagda.STienda.Entity.Enum.EstadoDePedido;
-import com.Unimagda.STienda.Mapper.DetalleEnvioMapper;
-import com.Unimagda.STienda.Repository.DetalleEnvioRepository;
-import com.Unimagda.STienda.Service.DetalleEnvioService;
+import com.Unimagda.STienda.Mapper.Mappers.DetalleEnvioMapper;
+import com.Unimagda.STienda.Repository.Repositorys.DetalleEnvioRepository;
+import com.Unimagda.STienda.Service.Services.DetalleEnvioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,16 +45,15 @@ public class DetalleEnvioServiceImpl implements DetalleEnvioService {
                 .collect(Collectors.toList());
     }
 
-
-
-
-//-----------------------------------------------------------------------
+    @Override
+    public DetalleEnvioDtoSend save(DetalleEnvioDtoSend detalleEnvioDtoSend) {
+        return null;
+    }
 
     @Override
-    public List<DetalleEnvioDtoSend>ObtenerNumeroDeGuiaYEstadoDelPedido( Long NumeroDeGuia, EstadoDePedido estadoDePedido){
-        return detalleEnvioRepository.findByNumeroDeGuiaAndAndEstadoDePedido(NumeroDeGuia,estadoDePedido)
-                .stream()
-                .map(detalleEnvioMapper::detalleEnvioToDetalleEnvioDtoSend)
-                .collect(Collectors.toList());
+    public DetalleEnvioDtoSend Update(DetalleEnvioDtoSend detalleEnvioDtoSend) {
+        return null;
     }
+
+
 }

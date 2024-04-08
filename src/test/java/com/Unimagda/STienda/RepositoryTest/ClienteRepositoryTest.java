@@ -2,7 +2,7 @@ package com.Unimagda.STienda.RepositoryTest;
 
 import com.Unimagda.STienda.AbstractIntegrationBDTest;
 import com.Unimagda.STienda.Entity.Cliente;
-import com.Unimagda.STienda.Repository.ClienteRepository;
+import com.Unimagda.STienda.Repository.Repositorys.ClienteRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

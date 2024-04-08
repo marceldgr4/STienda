@@ -1,4 +1,4 @@
-package com.Unimagda.STienda.Service;
+package com.Unimagda.STienda.Service.Services;
 
 import com.Unimagda.STienda.DTO.Dto.PagoDto;
 import com.Unimagda.STienda.Entity.Enum.MetodoDePago;

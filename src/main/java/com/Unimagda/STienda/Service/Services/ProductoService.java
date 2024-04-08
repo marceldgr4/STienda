@@ -1,4 +1,4 @@
-package com.Unimagda.STienda.Service;
+package com.Unimagda.STienda.Service.Services;
 
 import com.Unimagda.STienda.DTO.Dto.ProductoDto;
 import org.springframework.stereotype.Service;

@@ -3,10 +3,10 @@ package com.Unimagda.STienda.Service.Implements;
 import com.Unimagda.STienda.DTO.Dto.PagoDto;
 import com.Unimagda.STienda.Entity.Enum.MetodoDePago;
 import com.Unimagda.STienda.Entity.Pago;
-import com.Unimagda.STienda.Mapper.ClienteMapper;
-import com.Unimagda.STienda.Mapper.PagoMapper;
-import com.Unimagda.STienda.Repository.PagoRepository;
-import com.Unimagda.STienda.Service.PagoService;
+import com.Unimagda.STienda.Mapper.Mappers.ClienteMapper;
+import com.Unimagda.STienda.Mapper.Mappers.PagoMapper;
+import com.Unimagda.STienda.Repository.Repositorys.PagoRepository;
+import com.Unimagda.STienda.Service.Services.PagoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
