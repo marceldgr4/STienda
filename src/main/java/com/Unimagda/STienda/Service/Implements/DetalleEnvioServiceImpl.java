@@ -1,6 +1,7 @@
 package com.Unimagda.STienda.Service.Implements;
 
-import com.Unimagda.STienda.DTO.DetalleEnvioDto;
+
+import com.Unimagda.STienda.DTO.Send.DetalleEnvioDtoSend;
 import com.Unimagda.STienda.Entity.Enum.EstadoDePedido;
 import com.Unimagda.STienda.Mapper.DetalleEnvioMapper;
 import com.Unimagda.STienda.Repository.DetalleEnvioRepository;
@@ -23,34 +24,37 @@ public class DetalleEnvioServiceImpl implements DetalleEnvioService {
         this.detalleEnvioMapper = detalleEnvioMapper;
     }
     @Override
-    public List<DetalleEnvioDto> ObtenerDetalleEnvioPorId(Long idPedido){
+    public List<DetalleEnvioDtoSend> ObtenerDetalleEnvioPorId(Long idPedido){
         return   detalleEnvioRepository.findByPedidoId(idPedido)
                 .stream()
-                .map(detalleEnvioMapper::detalleEnvioToDetalleEnvioDto)
+                .map(detalleEnvioMapper::detalleEnvioToDetalleEnvioDtoSend)
                 .collect(Collectors.toList());
     }
     @Override
-    public List<DetalleEnvioDto>ObtenerDetalleDeEnvioPorTransportadora(String transportadora){
+    public List<DetalleEnvioDtoSend>ObtenerDetalleDeEnvioPorTransportadora(String transportadora){
         return detalleEnvioRepository.findByTransportadora(transportadora)
                 .stream()
-                .map(detalleEnvioMapper::detalleEnvioToDetalleEnvioDto)
+                .map(detalleEnvioMapper::detalleEnvioToDetalleEnvioDtoSend)
                 .collect(Collectors.toList());
     }
     @Override
-    public List<DetalleEnvioDto> ObtenerDetalleDeEnvioPorEstado(EstadoDePedido estadoDePedido){
+    public List<DetalleEnvioDtoSend> ObtenerDetalleDeEnvioPorEstado(EstadoDePedido estadoDePedido){
         return detalleEnvioRepository.findByEstadoDePedido(estadoDePedido)
                 .stream()
-                .map(detalleEnvioMapper::detalleEnvioToDetalleEnvioDto)
+                .map(detalleEnvioMapper::detalleEnvioToDetalleEnvioDtoSend)
                 .collect(Collectors.toList());
     }
+
+
+
 
 //-----------------------------------------------------------------------
 
     @Override
-    public List<DetalleEnvioDto>ObtenerNumeroDeGuiaYEstadoDelPedido(String NumeroDeGuia, EstadoDePedido estadoDePedido){
+    public List<DetalleEnvioDtoSend>ObtenerNumeroDeGuiaYEstadoDelPedido( Long NumeroDeGuia, EstadoDePedido estadoDePedido){
         return detalleEnvioRepository.findByNumeroDeGuiaAndAndEstadoDePedido(NumeroDeGuia,estadoDePedido)
                 .stream()
-                .map(detalleEnvioMapper::detalleEnvioToDetalleEnvioDto)
+                .map(detalleEnvioMapper::detalleEnvioToDetalleEnvioDtoSend)
                 .collect(Collectors.toList());
     }
 }

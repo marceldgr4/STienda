@@ -18,5 +18,5 @@ public interface DetalleEnvioRepository extends JpaRepository<DetalleEnvio, Long
     List<DetalleEnvio> findByEstadoDePedido(EstadoDePedido EstadoDePedido);
 
 
-    List<DetalleEnvio> findByNumeroDeGuiaAndAndEstadoDePedido(String NumeroDeGuia,EstadoDePedido estadoDePedido);
+    List<DetalleEnvio> findByNumeroDeGuiaAndAndEstadoDePedido(Long NumeroDeGuia, EstadoDePedido estadoDePedido);
 }

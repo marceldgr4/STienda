@@ -16,7 +16,8 @@ import java.util.List;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idCliente;
+
     @Column(nullable = false)
     private String Nombre;
 
@@ -34,7 +35,7 @@ public class Cliente {
     private List<Pedido>pedidos;
 
    public Cliente ActualizarCliente(Cliente cliente) {
-       return new Cliente(this.id, cliente.Nombre, cliente.Email, cliente.Direccion,cliente.CityName,cliente.pedidos);
+       return new Cliente(this.idCliente, cliente.Nombre, cliente.Email, cliente.Direccion,cliente.CityName,cliente.pedidos);
    }
 
 

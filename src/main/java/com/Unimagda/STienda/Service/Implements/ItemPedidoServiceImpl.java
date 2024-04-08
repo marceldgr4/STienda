@@ -1,6 +1,6 @@
 package com.Unimagda.STienda.Service.Implements;
 
-import com.Unimagda.STienda.DTO.ItemPedidoDto;
+import com.Unimagda.STienda.DTO.Dto.ItemPedidoDto;
 import com.Unimagda.STienda.Mapper.ItemPedidoMapper;
 import com.Unimagda.STienda.Repository.ItemPedidoRepository;
 import com.Unimagda.STienda.Service.ItemPedidoService;

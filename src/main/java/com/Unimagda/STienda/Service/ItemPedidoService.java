@@ -1,6 +1,6 @@
 package com.Unimagda.STienda.Service;
 
-import com.Unimagda.STienda.DTO.ItemPedidoDto;
+import com.Unimagda.STienda.DTO.Dto.ItemPedidoDto;
 
 
 

@@ -1,4 +1,4 @@
-package com.Unimagda.STienda.DTO;
+package com.Unimagda.STienda.DTO.Dto;
 
 import lombok.*;
 
@@ -7,6 +7,7 @@ import lombok.*;
 @Getter
 @Setter
 @Data
+@Builder
 public class ClienteDto {
     private Long id;
     private String Nombre;

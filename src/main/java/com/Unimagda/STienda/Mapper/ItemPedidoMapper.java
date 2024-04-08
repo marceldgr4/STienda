@@ -1,6 +1,6 @@
 package com.Unimagda.STienda.Mapper;
 
-import com.Unimagda.STienda.DTO.ItemPedidoDto;
+import com.Unimagda.STienda.DTO.Dto.ItemPedidoDto;
 import com.Unimagda.STienda.Entity.ItemPedido;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

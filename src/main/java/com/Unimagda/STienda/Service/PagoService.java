@@ -1,6 +1,6 @@
 package com.Unimagda.STienda.Service;
 
-import com.Unimagda.STienda.DTO.PagoDto;
+import com.Unimagda.STienda.DTO.Dto.PagoDto;
 import com.Unimagda.STienda.Entity.Enum.MetodoDePago;
 import com.Unimagda.STienda.Entity.Pago;
 

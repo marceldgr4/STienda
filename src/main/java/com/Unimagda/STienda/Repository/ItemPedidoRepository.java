@@ -1,6 +1,6 @@
 package com.Unimagda.STienda.Repository;
 
-import com.Unimagda.STienda.DTO.ItemPedidoDto;
+import com.Unimagda.STienda.DTO.Dto.ItemPedidoDto;
 import com.Unimagda.STienda.Entity.ItemPedido;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,6 +1,6 @@
 package com.Unimagda.STienda.Service;
 
-import com.Unimagda.STienda.DTO.ClienteDto;
+import com.Unimagda.STienda.DTO.Dto.ClienteDto;
 import com.Unimagda.STienda.DTO.Save.ClienteDtoSave;
 import com.Unimagda.STienda.DTO.Send.ClienteDtoSend;
 

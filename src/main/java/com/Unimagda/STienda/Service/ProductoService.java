@@ -1,6 +1,6 @@
 package com.Unimagda.STienda.Service;
 
-import com.Unimagda.STienda.DTO.ProductoDto;
+import com.Unimagda.STienda.DTO.Dto.ProductoDto;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

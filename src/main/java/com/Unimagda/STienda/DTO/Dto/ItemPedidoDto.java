@@ -1,4 +1,4 @@
-package com.Unimagda.STienda.DTO;
+package com.Unimagda.STienda.DTO.Dto;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @Data
 public class ItemPedidoDto {
-    private Long id;
+    private Long idItemPedido;
     private Long idPedido;
     private Long idProducto;
     private int Cantidad;

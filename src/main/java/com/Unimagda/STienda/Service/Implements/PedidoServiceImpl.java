@@ -1,6 +1,6 @@
 package com.Unimagda.STienda.Service.Implements;
 
-import com.Unimagda.STienda.DTO.PedidoDto;
+import com.Unimagda.STienda.DTO.Dto.PedidoDto;
 import com.Unimagda.STienda.Entity.Cliente;
 import com.Unimagda.STienda.Entity.Enum.EstadoDePedido;
 import com.Unimagda.STienda.Mapper.PedidoMapper;

@@ -15,7 +15,7 @@ import lombok.*;
 public class DetalleEnvio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idDetalleEnvio;
     private String Direccion;
     private String Transportadora;
     private  Long NumeroDeGuia;
