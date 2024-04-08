@@ -1,42 +1,57 @@
 package com.Unimagda.STienda.Service.Implements;
 
-import com.Unimagda.STienda.DTO.ItemPedidoDto;
-import com.Unimagda.STienda.Mapper.ItemPedidoMapper;
-import com.Unimagda.STienda.Repository.ItemPedidoRepository;
-import com.Unimagda.STienda.Service.ItemPedidoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.Unimagda.STienda.DTO.Dto.ItemPedidoDto;
+import com.Unimagda.STienda.DTO.Save.ItemPedidoDtoSave;
+import com.Unimagda.STienda.DTO.Send.ItemPedidoDtoSend;
+import com.Unimagda.STienda.Entity.ItemPedido;
+import com.Unimagda.STienda.Mapper.Mappers.ItemPedidoMapper;
+import com.Unimagda.STienda.Repository.Repositorys.ItemPedidoRepository;
+import com.Unimagda.STienda.Repository.Repositorys.PedidoRepository;
+import com.Unimagda.STienda.Repository.Repositorys.ProductoRepository;
+import com.Unimagda.STienda.Service.ServiceImpl;
+import com.Unimagda.STienda.Service.Services.ItemPedidoService;
+
 import org.springframework.stereotype.Service;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
-import java.util.stream.Collectors;
+
 @Service
-public class ItemPedidoServiceImpl implements ItemPedidoService {
+public class ItemPedidoServiceImpl extends ServiceImpl<ItemPedidoDtoSave, ItemPedidoDtoSend, ItemPedido> implements ItemPedidoService {
     private final ItemPedidoRepository itemPedidoRepository;
     private final ItemPedidoMapper itemPedidoMapper;
-
-    @Autowired
-
-    public ItemPedidoServiceImpl(ItemPedidoRepository itemPedidoRepository, ItemPedidoMapper itemPedidoMapper) {
+    private  final PedidoRepository pedidoRepository;
+    private  final ProductoRepository productoRepository;
+    protected ItemPedidoServiceImpl(ItemPedidoRepository itemPedidoRepository,ItemPedidoMapper itemPedidoMapper, PedidoRepository pedidoRepository, ProductoRepository productoRepository) {
+        super(itemPedidoRepository,itemPedidoMapper);
         this.itemPedidoRepository = itemPedidoRepository;
         this.itemPedidoMapper = itemPedidoMapper;
+        this.pedidoRepository = pedidoRepository;
+        this.productoRepository = productoRepository;
     }
+
     @Override
     public List<ItemPedidoDto> ObtenerItemPedidosPorIdPedido(Long idPedido) {
-        return itemPedidoRepository.findByPedidoId(idPedido)
-                .stream()
-                .map(itemPedidoMapper::itemPedidoToItemPedidoDto)
-                .collect(Collectors.toList());
+        return List.of();
     }
+
     @Override
-    public List<ItemPedidoDto>ObtenerItemPedidosPorProductoEspecifico(Long idProducto) {
-        return itemPedidoRepository.findByProductoId(idProducto)
-                .stream()
-                .map(itemPedidoMapper::itemPedidoToItemPedidoDto)
-                .collect(Collectors.toList());
+    public List<ItemPedidoDto> ObtenerItemPedidosPorProductoEspecifico(Long idProducto) {
+        return List.of();
     }
+
     @Override
     public List<ItemPedidoDto> ObtenerLaSumaTotalDeVentasDeProducto(Long idProducto) {
-        return itemPedidoRepository.CalcularTotalDeVentaPorProducto(idProducto);
+        return List.of();
+    }
 
+    @Override
+    public String value() {
+        return "";
+    }
+
+    @Override
+    public Class<? extends Annotation> annotationType() {
+        return null;
     }
 }
