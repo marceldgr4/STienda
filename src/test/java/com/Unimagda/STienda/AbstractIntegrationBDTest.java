@@ -8,10 +8,11 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+
 @Testcontainers
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class AbstractIntegrationBDTest {
+public abstract class AbstractIntegrationBDTest {
     @Container
     @ServiceConnection
     static PostgreSQLContainer<?>postgres =new PostgreSQLContainer<>("postgres:15-alpine");

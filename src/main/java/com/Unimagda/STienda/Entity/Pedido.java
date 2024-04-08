@@ -13,11 +13,12 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @Table(name = "pedido")
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idPedido;
 
     @OneToMany(mappedBy = "pedidos")
     private List<ItemPedido>itemPedidos;

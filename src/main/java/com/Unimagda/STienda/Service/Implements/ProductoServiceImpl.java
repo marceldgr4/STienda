@@ -1,9 +1,9 @@
 package com.Unimagda.STienda.Service.Implements;
 
-import com.Unimagda.STienda.DTO.ProductoDto;
-import com.Unimagda.STienda.Mapper.ProductoMapper;
-import com.Unimagda.STienda.Repository.ProductoRepository;
-import com.Unimagda.STienda.Service.ProductoService;
+import com.Unimagda.STienda.DTO.Dto.ProductoDto;
+import com.Unimagda.STienda.Mapper.Mappers.ProductoMapper;
+import com.Unimagda.STienda.Repository.Repositorys.ProductoRepository;
+import com.Unimagda.STienda.Service.Services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
