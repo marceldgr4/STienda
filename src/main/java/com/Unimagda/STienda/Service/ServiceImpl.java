@@ -2,12 +2,14 @@ package com.Unimagda.STienda.Service;
 
 
 import com.Unimagda.STienda.DTO.Send.ClienteDtoSend;
+import com.Unimagda.STienda.DTO.Send.DetalleEnvioDtoSend;
 import com.Unimagda.STienda.Mapper.MapperGeneral;
 import org.aspectj.apache.bcel.util.Repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+
 
 import java.util.Optional;
 
@@ -38,7 +40,5 @@ public Optional<M>findById(Long id) {
     }
 
 
-    public abstract Optional<ClienteDtoSend>findByEmail(String email);
 
-    public abstract Optional<ClienteDtoSend>findByDireccion(String Direccion);
 }

@@ -18,7 +18,7 @@ public interface ClienteService extends Service<ClienteDtoSave,ClienteDtoSend,Cl
     Optional<ClienteDtoSend> findByCityName(String City);
     //Page<ClienteDtoSend> BuscarPorNombreConTerm(String Nombre);
     Page<ClienteDtoSend> findByNombreStartingWith(Pageable pageable, String Nombre);
-    //ClienteDtoSend save(ClienteDtoSave clienteDtoSave);
+    ClienteDtoSend save(ClienteDtoSave clienteDtoSave);
     ClienteDtoSend Update(ClienteDtoSave clienteDtoSave, Long idCliente);
 
 
