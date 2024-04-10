@@ -11,12 +11,12 @@ import org.mapstruct.Mappings;
 
 
 @Mapper(componentModel = "spring")
-public interface ItemPedidoMapper extends MapperGeneral<ItemPedidoDtoSend, ItemPedidoDtoSave, ItemPedido> {
+public interface ItemPedidoMapper extends MapperGeneral<ItemPedidoDtoSave, ItemPedidoDtoSend, ItemPedido> {
     @Mappings({
             @Mapping(source = "pedido.idPedido",target = "idPedido"),
             @Mapping(source = "producto.idProducto",target = "idProducto")
     })
-    ItemPedidoDtoSend EntityToSend(ItemPedido itemPedido);
+    ItemPedidoDtoSend EntityToDtoSend(ItemPedido itemPedido);
 
 
 

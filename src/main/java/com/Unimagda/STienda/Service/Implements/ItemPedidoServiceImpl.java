@@ -1,9 +1,11 @@
 package com.Unimagda.STienda.Service.Implements;
 
-import com.Unimagda.STienda.DTO.Dto.ItemPedidoDto;
+
 import com.Unimagda.STienda.DTO.Save.ItemPedidoDtoSave;
 import com.Unimagda.STienda.DTO.Send.ItemPedidoDtoSend;
 import com.Unimagda.STienda.Entity.ItemPedido;
+import com.Unimagda.STienda.Entity.Pedido;
+import com.Unimagda.STienda.Entity.Producto;
 import com.Unimagda.STienda.Mapper.Mappers.ItemPedidoMapper;
 import com.Unimagda.STienda.Repository.Repositorys.ItemPedidoRepository;
 import com.Unimagda.STienda.Repository.Repositorys.PedidoRepository;
@@ -13,8 +15,9 @@ import com.Unimagda.STienda.Service.Services.ItemPedidoService;
 
 import org.springframework.stereotype.Service;
 
-import java.lang.annotation.Annotation;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ItemPedidoServiceImpl extends ServiceImpl<ItemPedidoDtoSave, ItemPedidoDtoSend, ItemPedido> implements ItemPedidoService {
@@ -22,36 +25,57 @@ public class ItemPedidoServiceImpl extends ServiceImpl<ItemPedidoDtoSave, ItemPe
     private final ItemPedidoMapper itemPedidoMapper;
     private  final PedidoRepository pedidoRepository;
     private  final ProductoRepository productoRepository;
-    protected ItemPedidoServiceImpl(ItemPedidoRepository itemPedidoRepository,ItemPedidoMapper itemPedidoMapper, PedidoRepository pedidoRepository, ProductoRepository productoRepository) {
-        super(itemPedidoRepository,itemPedidoMapper);
+    protected ItemPedidoServiceImpl(ItemPedidoRepository itemPedidoRepository,
+                                    ItemPedidoMapper itemPedidoMapper,
+                                    PedidoRepository pedidoRepository,
+                                    ProductoRepository productoRepository) {
+        super(itemPedidoRepository, itemPedidoMapper);
         this.itemPedidoRepository = itemPedidoRepository;
         this.itemPedidoMapper = itemPedidoMapper;
         this.pedidoRepository = pedidoRepository;
         this.productoRepository = productoRepository;
     }
 
+
+
     @Override
-    public List<ItemPedidoDto> ObtenerItemPedidosPorIdPedido(Long idPedido) {
-        return List.of();
+    public List<ItemPedidoDtoSend> ObtenerItemPedidosPorIdPedido(Long idPedido) {
+        List<ItemPedido> itemPedidos = itemPedidoRepository.findByIdPedido(idPedido);
+        return itemPedidoMapper.ListEntityToDtoSend(itemPedidos);
     }
 
     @Override
-    public List<ItemPedidoDto> ObtenerItemPedidosPorProductoEspecifico(Long idProducto) {
-        return List.of();
+    public List<ItemPedidoDtoSend> ObtenerItemPedidosPorProductoEspecifico(Long idProducto) {
+        List<ItemPedido> itemPedidos = itemPedidoRepository.findByIdProducto(idProducto);
+        return itemPedidoMapper.ListEntityToDtoSend(itemPedidos);
     }
 
     @Override
-    public List<ItemPedidoDto> ObtenerLaSumaTotalDeVentasDeProducto(Long idProducto) {
-        return List.of();
+    public Double ObtenerLaSumaTotalDeVentasDeProducto(Long idProducto) {
+        return itemPedidoRepository.SumaTotalDeVentaPorProducto(idProducto);
     }
 
     @Override
-    public String value() {
-        return "";
+    public ItemPedidoDtoSend save(ItemPedidoDtoSave itemPedidoDtoSave, Long idProducto, Long idPedido) {
+        Optional<Pedido> pedido = pedidoRepository.findById(idPedido);
+        Optional<Producto> producto = productoRepository.findById(idProducto);
+        ItemPedido itemPedido = itemPedidoMapper.dtoSaveToEntity(itemPedidoDtoSave);
+        if(pedido.isEmpty()||producto.isEmpty())
+            throw new RuntimeException("Pedido no encontrado");
+        itemPedido.setPedido(pedido.get());
+        itemPedido.setProducto(producto.get());
+        producto.get().getItemPedidos().add(itemPedido);
+        pedido.get().getItemPedidos().add(itemPedido);
+        return itemPedidoMapper.EntityToDtoSend(itemPedidoRepository.save(itemPedido));
     }
 
     @Override
-    public Class<? extends Annotation> annotationType() {
-        return null;
-    }
+    public ItemPedidoDtoSend update(ItemPedidoDtoSave itemPedidoDtoSave, Long id) {
+        Optional<ItemPedido> itemPedido = itemPedidoRepository.findById(id);
+        if (itemPedido.isEmpty())
+            throw new RuntimeException("item pedido No encontrado");
+        ItemPedido itemPedidoUpdate = itemPedido.get().itemPedidoUpdate(itemPedidoMapper.dtoSaveToEntity(itemPedidoDtoSave));
+        return itemPedidoMapper.EntityToDtoSend(itemPedidoRepository.save(itemPedidoUpdate));
+        }
+
 }
