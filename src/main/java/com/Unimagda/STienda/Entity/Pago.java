@@ -18,15 +18,21 @@ public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPago;
+    private Double TotalAPagar;
+    private LocalDateTime FechaDePago;
+    private MetodoDePago metodoDePago;
 
     @OneToOne
     @JoinColumn(name = "idPedido")
     private Pedido pedido;
 
-    private Double TotalAPagar;
-    private LocalDateTime FechaDePago;
+
 
     @Enumerated(EnumType.STRING)
-    private MetodoDePago metodoDePago;
 
+
+    public Pago pagoUpdate(Pago pago) {
+        Pedido PedidoUpdate = pago.getPedido() !=null ? pago.getPedido() : this.pedido;
+        return new Pago(this.idPago, pago.TotalAPagar, pago.FechaDePago,pago.metodoDePago, PedidoUpdate);
+    }
 }

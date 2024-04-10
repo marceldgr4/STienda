@@ -1,80 +1,73 @@
 package com.Unimagda.STienda.Service.Implements;
 
-import com.Unimagda.STienda.DTO.Dto.PagoDto;
+
+import com.Unimagda.STienda.DTO.Save.PagoDtoSave;
+import com.Unimagda.STienda.DTO.Send.PagoDtoSend;
 import com.Unimagda.STienda.Entity.Enum.MetodoDePago;
 import com.Unimagda.STienda.Entity.Pago;
-import com.Unimagda.STienda.Mapper.Mappers.ClienteMapper;
+
+import com.Unimagda.STienda.Entity.Pedido;
 import com.Unimagda.STienda.Mapper.Mappers.PagoMapper;
 import com.Unimagda.STienda.Repository.Repositorys.PagoRepository;
+import com.Unimagda.STienda.Repository.Repositorys.PedidoRepository;
+import com.Unimagda.STienda.Service.ServiceImpl;
 import com.Unimagda.STienda.Service.Services.PagoService;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
+
 @Service
-public class PagoServiceImpl implements PagoService {
+public class PagoServiceImpl extends ServiceImpl<PagoDtoSave, PagoDtoSend,Pago> implements PagoService {
     private final PagoRepository pagoRepository;
-    private final ClienteMapper clienteMapper;
+    private  final PedidoRepository pedidoRepository;
     private final PagoMapper pagoMapper;
-
-    @Autowired
-    public PagoServiceImpl(PagoRepository pagoRepository, ClienteMapper clienteMapper, PagoMapper pagoMapper) {
+    protected PagoServiceImpl(PagoRepository pagoRepository, PedidoRepository pedidoRepository, PagoMapper pagoMapper) {
+        super(pagoRepository, pagoMapper);
         this.pagoRepository = pagoRepository;
-        this.clienteMapper = clienteMapper;
+        this.pedidoRepository = pedidoRepository;
         this.pagoMapper = pagoMapper;
-    }
-    public List<PagoDto> ObtenerPagoEnRangoDeFecha(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
-        return pagoRepository.findByFechaDePagoBetween(fechaInicio, fechaFin)
-                .stream()
-                .map(pagoMapper::PagoToPagoDto)
-                .collect(Collectors.toList());
-    }
-    public List<PagoDto> ObtenerPagoPorIdPedidoYMetodoDePago(Long idPedido, MetodoDePago metodoDePago) {
-        return pagoRepository.findByPedidoIdAndMetodoDePago(idPedido,metodoDePago)
-                .stream()
-                .map(pagoMapper::PagoToPagoDto)
-                .collect(Collectors.toList());
 
     }
-    //---------------------------------------------------------------------------
-    //----Obterner otros datos-----------
-    public List<PagoDto> ObtenerPagoPorIdCliente(Long idCliente) {
-        return pagoRepository.findById(idCliente)
-                .stream().map(pagoMapper::PagoToPagoDto)
-                .collect(Collectors.toList());
+
+    @Override
+    public Page<PagoDtoSend> BuscarPorRangoDeFecha(LocalDateTime fechaInicial, LocalDateTime fechaFinal) {
+        Pageable pageable = PageRequest.of(0,10);
+        Page<Pago> ListaDePago = pagoRepository.findByFechaDePagoBetween(pageable, fechaInicial, fechaFinal);
+        return ListaDePago.map(pagoMapper::EntityToDtoSend);
     }
 
-    public List<PagoDto>ObtenerTodo(){
-        return pagoRepository.findAll().stream().map(pagoMapper::PagoToPagoDto).collect(Collectors.toList());
+    @Override
+    public Page<PagoDtoSend> buscarMetodoDePagoYPedido_IDPedido(MetodoDePago metodoDePago, Long idPedido) {
+        Pageable pageable = PageRequest.of(0,10);
+        Page<Pago> ListaDePago =pagoRepository.findByPedidoIdAndMetodoDePago(pageable, idPedido, metodoDePago);
+        return ListaDePago.map(pagoMapper::EntityToDtoSend);
     }
 
-    public List<PagoDto> ObtenerIdPago(Long idPago) {
-        return pagoRepository.findById(idPago)
-                .stream().map(pagoMapper::PagoToPagoDto)
-                .collect(Collectors.toList());
+    @Override
+    public PagoDtoSend save(PagoDtoSave pagoDtoSave, Long idPedido) {
+        Optional<Pedido> pedido = pedidoRepository.findById(idPedido);
+        Pago pago = pagoMapper.dtoSaveToEntity(pagoDtoSave);
+        pago.setPedido(pedido.get());
+        pedido.get().setPago(pago);
+        return pagoMapper.EntityToDtoSend(pagoRepository.save(pago));
     }
-    //------------------------CRUD-----------------------
-    public PagoDto CrearPago(PagoDto pagoDto) {
-        Pago pago = pagoMapper.PagoDtoToPago(pagoDto);
-        pago = pagoRepository.save(pago);
-        return pagoMapper.PagoToPagoDto(pago);
-    }
-    public Pago ActualizarPago(Long idPago, Pago pago) {
-        if (pagoRepository.existsById(pago.getId())){
-            return pagoRepository.save(pago);
-        }else{
-            return null;
+
+    @Override
+    public PagoDtoSend Update(PagoDtoSave pagoDtoSave, Long id) {
+        Optional<Pago> pago = pagoRepository.findById(id);
+        if (pago.isEmpty()) {
+            return pagoMapper.EntityToDtoSend(pagoRepository.save(pagoMapper.dtoSaveToEntity(pagoDtoSave)));
         }
+        Pago pagoUpdate =pago.get().pagoUpdate(pagoMapper.dtoSaveToEntity(pagoDtoSave));
+        return pagoMapper.EntityToDtoSend(pagoRepository.save(pagoUpdate));
+    }
 
-    }
-    public Boolean EliminarPago(Long idPago) {
-        if (pagoRepository.existsById(idPago)){
-            pagoRepository.deleteById(idPago);
-            return true;
-        }else {
-            return false;
-        }
-    }
+
+
 }
