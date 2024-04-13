@@ -4,6 +4,7 @@ package com.Unimagda.STienda.Service.Implements;
 import com.Unimagda.STienda.DTO.Save.DetalleEnvioDtoSave;
 
 import com.Unimagda.STienda.DTO.Send.DetalleEnvioDtoSend;
+
 import com.Unimagda.STienda.Entity.DetalleEnvio;
 import com.Unimagda.STienda.Entity.Enum.EstadoDePedido;
 import com.Unimagda.STienda.Entity.Pedido;
@@ -23,7 +24,8 @@ public class DetalleEnvioServiceImpl extends ServiceImpl<DetalleEnvioDtoSave, De
 
     private final DetalleEnvioRepository detalleEnvioRepository;
     private final DetalleEnvioMapper detalleEnvioMapper;
-    private PedidoRepository pedidoRepository;
+    private  final PedidoRepository pedidoRepository;
+
     protected DetalleEnvioServiceImpl(DetalleEnvioRepository detalleEnvioRepository,DetalleEnvioMapper detalleEnvioMapper,PedidoRepository pedidoRepository){
         super(detalleEnvioRepository,detalleEnvioMapper);
         this.detalleEnvioRepository = detalleEnvioRepository;
@@ -31,7 +33,7 @@ public class DetalleEnvioServiceImpl extends ServiceImpl<DetalleEnvioDtoSave, De
         this.pedidoRepository = pedidoRepository;
     }
     @Override
-    public List<DetalleEnvioDtoSend> findByIdPedido(Long idPedido){
+    public List<DetalleEnvioDtoSend> ObtenerIdPedido(Long idPedido){
         List<DetalleEnvio> detalleEnvioList = detalleEnvioRepository.findByPedido_IdPedido(idPedido);
         return  detalleEnvioMapper.ListEntityToDtoSend(detalleEnvioList);
     }

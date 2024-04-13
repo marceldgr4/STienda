@@ -18,6 +18,4 @@ public interface ItemPedidoMapper extends MapperGeneral<ItemPedidoDtoSave, ItemP
     })
     ItemPedidoDtoSend EntityToDtoSend(ItemPedido itemPedido);
 
-
-
 }

@@ -12,7 +12,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 
-public interface ItemPedidoRepository extends Repository<ItemPedido>, org.aspectj.apache.bcel.util.Repository {
+public interface ItemPedidoRepository extends Repository<ItemPedido> {
     List<ItemPedido>findByIdPedido(Long idPedido);
     List<ItemPedido> findByIdProducto(Long idProducto);
 

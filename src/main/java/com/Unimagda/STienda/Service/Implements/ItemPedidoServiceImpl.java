@@ -12,9 +12,7 @@ import com.Unimagda.STienda.Repository.Repositorys.PedidoRepository;
 import com.Unimagda.STienda.Repository.Repositorys.ProductoRepository;
 import com.Unimagda.STienda.Service.ServiceImpl;
 import com.Unimagda.STienda.Service.Services.ItemPedidoService;
-
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +23,7 @@ public class ItemPedidoServiceImpl extends ServiceImpl<ItemPedidoDtoSave, ItemPe
     private final ItemPedidoMapper itemPedidoMapper;
     private  final PedidoRepository pedidoRepository;
     private  final ProductoRepository productoRepository;
+
     protected ItemPedidoServiceImpl(ItemPedidoRepository itemPedidoRepository,
                                     ItemPedidoMapper itemPedidoMapper,
                                     PedidoRepository pedidoRepository,
@@ -36,18 +35,16 @@ public class ItemPedidoServiceImpl extends ServiceImpl<ItemPedidoDtoSave, ItemPe
         this.productoRepository = productoRepository;
     }
 
-
-
     @Override
-    public List<ItemPedidoDtoSend> ObtenerItemPedidosPorIdPedido(Long idPedido) {
-        List<ItemPedido> itemPedidos = itemPedidoRepository.findByIdPedido(idPedido);
-        return itemPedidoMapper.ListEntityToDtoSend(itemPedidos);
+    public List<ItemPedidoDtoSend> ObtenerListaItemPedidoPorIdPedido(Long idPedido) {
+        List<ItemPedido> itemPedidoList = itemPedidoRepository.findByIdPedido(idPedido);
+        return itemPedidoMapper.ListEntityToDtoSend(itemPedidoList);
     }
 
     @Override
     public List<ItemPedidoDtoSend> ObtenerItemPedidosPorProductoEspecifico(Long idProducto) {
-        List<ItemPedido> itemPedidos = itemPedidoRepository.findByIdProducto(idProducto);
-        return itemPedidoMapper.ListEntityToDtoSend(itemPedidos);
+        List<ItemPedido> itemPedidoList = itemPedidoRepository.findByIdProducto(idProducto);
+        return itemPedidoMapper.ListEntityToDtoSend(itemPedidoList);
     }
 
     @Override

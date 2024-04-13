@@ -1,7 +1,7 @@
 package com.Unimagda.STienda.Service;
 
 import com.Unimagda.STienda.Mapper.MapperGeneral;
-import org.aspectj.apache.bcel.util.Repository;
+import com.Unimagda.STienda.Repository.Repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +23,7 @@ public abstract class ServiceImpl<S,M,E> implements Service<S,M,E> {
     return ListUser.map(mapper::EntityToDtoSend);
 }
 public Optional<M>findById(Long id) {
-    Optional<E> User = Optional.ofNullable(repositoy.findById(id).orElseThrow(() ->
+    Optional<E> User = Optional.ofNullable(repository.findById(id).orElseThrow(() ->
             new RuntimeException("entidad not encontrada")));
             return User.map(mapper::EntityToDtoSend);
     }
