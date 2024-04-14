@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class ClienteDtoSend {
-    private Long id;
+    private Long idCliente;
     private String Nombre;
     private String Email;
     private String Direccion;

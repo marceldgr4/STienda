@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 
 public class ClienteDtoSave {
 @NotBlank
-    private String nombre;
+    private String Nombre;
 @Email
-    private String email;
+    private String Email;
     private String Direccion;
     private String CityName;
 
