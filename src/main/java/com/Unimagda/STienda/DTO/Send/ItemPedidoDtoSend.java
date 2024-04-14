@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ItemPedidoDtoSend  {
     private Long idItemPedido;
-    private int Cantidad;
+    private Integer Cantidad;
     private Double PrecioUnitario;
     private Long idPedido;
     private Long idProducto;

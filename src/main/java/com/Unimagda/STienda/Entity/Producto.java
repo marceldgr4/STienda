@@ -13,6 +13,7 @@ import java.util.List;
 @Table(name= "productos")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 
 public class Producto {
     @Id
@@ -25,7 +26,11 @@ public class Producto {
    private List<ItemPedido> itemPedidos;
 
     public Producto UpdateProducto(Producto producto) {
-        return new Producto(this.idProducto, producto.NombreProducto,producto.PrecioProducto,producto.Stock,producto.itemPedidos);
+        return new Producto(this.idProducto,
+                producto.NombreProducto,
+                producto.PrecioProducto,
+                producto.Stock,
+                producto.itemPedidos);
     }
 
 

@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ProductoDtoSave {
     @NotBlank
-    private String nombreProducto;
+    private String NombreProducto;
     @Min(0)
-    private double precioProducto;
+    private double PrecioProducto;
     @Min(0)
     private Integer Stock;
 }

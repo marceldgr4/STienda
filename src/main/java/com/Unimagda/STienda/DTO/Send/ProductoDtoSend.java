@@ -14,8 +14,8 @@ import java.util.List;
 @Builder
 public class ProductoDtoSend {
     private Long idProducto;
-    private String nombreProducto;
-    private Double precioProducto;
+    private String NombreProducto;
+    private Double PrecioProducto;
     private Integer Stock;
      @JsonIgnore
     private List<ItemPedidoDtoSend> itemPedido;

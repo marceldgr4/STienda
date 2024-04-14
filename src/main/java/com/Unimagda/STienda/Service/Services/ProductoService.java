@@ -7,14 +7,11 @@ import com.Unimagda.STienda.Entity.Producto;
 import com.Unimagda.STienda.Service.Service;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
-
-
 
 public interface ProductoService extends Service<ProductoDtoSave,ProductoDtoSend, Producto> {
    Page<ProductoDtoSend> BuscarNombreDeProductos(String nombre);
    Page<ProductoDtoSend> BuscarEnStock(Integer Stock);
-   Page<ProductoDtoSend>BuscarPorPrecioYStock(Double PrecioProducto, Integer Stock);
+   Page<ProductoDtoSend>BuscarPorPrecioYStock( Integer Stock, Double PrecioProducto);
    ProductoDtoSend Update(ProductoDtoSave productoDtoSave, Long id);
 
 }

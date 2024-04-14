@@ -45,9 +45,9 @@ protected ProductoServiceImpl(ProductoRepository productoRepository, ProductoMap
     }
 
     @Override
-    public Page<ProductoDtoSend> BuscarPorPrecioYStock(Double PrecioProducto, Integer Stock) {
+    public Page<ProductoDtoSend> BuscarPorPrecioYStock( Integer Stock,Double PrecioProducto) {
     Pageable pageable = PageRequest.of(0,10);
-    Page<Producto> productosList= productoRepository.findByStockAndPrecioProductoGreaterThan(pageable,PrecioProducto,Stock);
+    Page<Producto> productosList= productoRepository.findByStockAndPrecioProductoGreaterThan(pageable, Stock, PrecioProducto);
     return productosList.map(productoMapper::EntityToDtoSend);
     }
 

@@ -17,8 +17,8 @@ public interface ProductoRepository extends Repository<Producto> {
     @Query("select p from Producto p where p.Stock > 0")
     Page<Producto> findByStockGreaterThan(Pageable pageable, Integer Stock);
 
-    Page<Producto> findByStockAndPrecioProductoGreaterThan(Pageable pageable,Double stock,Integer precioProducto);
+    Page<Producto> findByStockAndPrecioProductoGreaterThan(Pageable pageable,Integer stock,Double precioProducto);
 
     @Query("select p from Producto p where p.PrecioProducto <=:maxPrecio and p.Stock<=:maxStock")
-    Page<Producto>findByPrecioAndStockGreaterThan(Double maxPrecio, int maxStock);
+    Page<Producto>findByPrecioAndStockGreaterThan(Double maxPrecio, Integer maxStock);
 }
