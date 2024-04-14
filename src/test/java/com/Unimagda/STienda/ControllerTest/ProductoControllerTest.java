@@ -39,12 +39,12 @@ public class ProductoControllerTest {
     ProductoDtoSave productoDtoSave;
     @BeforeEach
     void setUp(){
-        productoDtoSave =productoDtoSave.builder()
+        productoDtoSave = ProductoDtoSave.builder()
                 .NombreProducto("product1")
                 .PrecioProducto(100.0)
                 .Stock(10)
                 .build();
-        productoDtoSend = productoDtoSend.builder()
+        productoDtoSend = ProductoDtoSend.builder()
                 .idProducto(1L)
                 .NombreProducto("product1")
                 .PrecioProducto(100.0)

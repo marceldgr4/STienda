@@ -112,7 +112,7 @@ public class ClienteControllerTest {
     }
     @Test
     void delete() throws Exception{
-        Long idCliente=1L;
+        long idCliente=1L;
         mockMvc.perform(MockMvcRequestBuilders
                 .delete(URL+ "/" +idCliente))
                 .andExpect(status().isOk())
